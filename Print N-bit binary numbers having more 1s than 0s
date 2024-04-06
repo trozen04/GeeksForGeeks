@@ -1,0 +1,19 @@
+class Solution {
+    ArrayList<String> NBitBinary(int N) {
+        ArrayList<String> list = new ArrayList<>();
+        combinations(N, 0, 0, "", list);
+        return list;
+    }
+    public void combinations(int N, int one, int zero, String str, List<String> list){
+        if(N == 0){
+            list.add(str);
+            return;
+        }
+        if(one >= zero){
+            combinations(N - 1, one + 1, zero, str + '1', list);
+        }
+        if(one > zero){
+            combinations(N - 1, one, zero + 1, str + '0', list);
+        }
+    }
+}
