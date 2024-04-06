@@ -1,0 +1,13 @@
+class Solution {
+    public static int findMaxForN(Node root, int n) {
+        int res = -1;
+        while(root != null){
+            if(root.key > n) root = root.left;
+            else{
+                res  = root.key;
+                root = root.right;
+            }
+        }
+        return res;
+    }
+}
