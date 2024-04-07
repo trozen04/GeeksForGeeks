@@ -1,0 +1,16 @@
+class Solution {
+    public static int minJumps(int n, int[] arr) {
+       Map<Integer, Integer> map = new HashMap<>();
+       for(int i = 0; i < n; i++){
+           map.put(arr[i], Math.max(map.getOrDefault(arr[i], -1), i));
+       }
+       int ans = n - 1;
+       for(int i = 0; i < n; i++){
+           int left = i;
+           int value = map.get(arr[i]);
+           int right = n - value;
+           ans = Math.min(ans, left + right);
+       }
+       return ans;
+    }
+}
