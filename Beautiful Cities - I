@@ -1,0 +1,18 @@
+class Solution {
+    public static int[] canTrade(int n, int[] beautifulness, int q, int[][] queries) {
+        int[] res = new int[q];
+        for(int k = 0; k < q; k++){
+            int u = queries[k][0];
+            int v = queries[k][1];
+            int temp = 1;
+            for(int i = u-1; i < v-1; i++){
+                if(beautifulness[i] != beautifulness[i+1]){
+                    temp = 0;
+                    break;
+                }
+            }
+            res[k] = temp;
+        }
+        return res;
+    }
+}
