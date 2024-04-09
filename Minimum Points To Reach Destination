@@ -1,0 +1,22 @@
+class Solution {
+    public int minPoints(int points[][], int m, int n) {
+        int[][] arr = new int[m][n];
+        for(int[] temp : arr){
+            Arrays.fill(temp, -1);
+        }
+        return helper(0, 0, points, m, n, arr);
+    }
+    public int helper(int i, int j, int[][] points, int m, int n, int[][] arr){
+        
+        if(i == m-1 && j == n-1) return 1 - points[i][j];
+        if(i == m || j == n) return Integer.MAX_VALUE;
+        
+        if(arr[i][j] != -1) return arr[i][j];
+        
+        int x = helper(i, j+1, points, m, n, arr);
+        
+        int y = helper(i+1, j, points, m, n, arr);
+        
+        return arr[i][j] = Math.max(1, Math.min(x,y) - points[i][j]);
+    }
+}
