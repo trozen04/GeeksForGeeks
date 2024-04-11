@@ -1,0 +1,33 @@
+class Solution{
+    
+    // function to convert a given Gray equivalent n to Binary equivalent.
+    public static int grayToBinary(int n) {
+        if(n == 0 || n == 1) return n;
+        String gray = "";
+        while(n != 0){
+            int rem = n % 2;
+            gray = rem + gray;
+            n /= 2;
+        }
+        String bin = "1";
+        
+        int temp = 1;
+        for(int i = 1; i < gray.length() ; i++){
+            int num = gray.charAt(i) - '0';
+            temp = temp ^ num;
+            bin += temp;
+        }
+        int res = 0;
+        int k = 0;
+        for(int i = bin.length() - 1; i >= 0; i--){
+            int num = bin.charAt(i) - '0';
+            if(num == 0){
+                k++;
+                continue;
+            }
+            res += Math.pow(2, k);
+            k++;
+        }
+        return res;
+    }      
+}
