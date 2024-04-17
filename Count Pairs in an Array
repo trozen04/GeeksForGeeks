@@ -1,0 +1,25 @@
+class Solution {
+    public int countPairs(int[] arr, int n) {
+        int ans = 0;
+        List<Integer> lis = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            int tmp = i * arr[i];
+            int pos = upperBound(lis, tmp);
+            ans += i - pos;
+            lis.add(pos, tmp);
+        }
+        return ans;
+    }
+    private int upperBound(List<Integer> lis, int target) {
+        int left = 0, right = lis.size();
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (lis.get(mid) <= target) {
+                left = mid + 1;
+            } else {
+                right = mid;
+            }
+        }
+        return left;
+    }
+}
