@@ -1,0 +1,54 @@
+class Solution
+{
+    public static ArrayList<Integer> findUnion(int arr1[], int arr2[], int n, int m)
+    {
+        ArrayList<Integer> list = new ArrayList<>();
+        int i = 0, j = 0;
+        int num = 0;
+        while(i < n || j < m){
+            if(i >= n && j < m){
+                if(i > 0 && arr2[j] == list.get(num-1)){
+                    j++;
+                    continue;
+                }
+                list.add(arr2[j]);
+                j++; num++;
+            } else if( j >= m && i < n){
+                if(num > 0 && arr1[i] == list.get(num-1)){
+                    i++;
+                    continue;
+                }
+                list.add(arr1[i]);
+                i++; num++;
+            } else {
+                if(arr1[i] < arr2[j]){
+                    if(num > 0 && arr1[i] == list.get(num-1)){
+                        i++;
+                        continue;
+                    }
+                    list.add(arr1[i]);
+                    i++; num++;
+                } else if(arr1[i] > arr2[j]){
+                    if(num > 0 && arr2[j] == list.get(num-1)){
+                        j++;
+                        continue;
+                    }
+                    list.add(arr2[j]);
+                    j++; num++;
+                } else if(arr1[i] == arr2[j]) {
+                    if(num > 0 && arr1[i] == list.get(num-1)){
+                        i++;
+                        j++;
+                        continue;
+                    }
+                    list.add(arr1[i]);
+                    i++;
+                    j++;
+                    num++;
+                }
+            }
+        }
+         num++;
+        return list;
+    }
+}
