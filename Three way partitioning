@@ -1,0 +1,33 @@
+class Solution{
+    //Function to partition the array around the range such 
+    //that array is divided into three parts.
+    public void threeWayPartition(int array[], int a, int b)
+    {
+        ArrayList<Integer> list1 = new ArrayList<>();
+        ArrayList<Integer> list2 = new ArrayList<>();
+        ArrayList<Integer> list3 = new ArrayList<>();
+        
+        for(int i = 0; i < array.length; i++){
+            if(array[i] < a){
+                list1.add(array[i]);
+            } else if(array[i] >= a && array[i] <= b){
+                list2.add(array[i]);
+            } else{
+                list3.add(array[i]);
+            }
+        }
+        int temp = 0;
+        for(int i = 0; i < list1.size(); i++){
+            array[temp++] = list1.get(i);
+        }
+        
+        for(int i = 0; i < list2.size(); i++){
+            array[temp++] = list2.get(i);
+        }
+        
+        for(int i = 0; i < list3.size(); i++){
+            array[temp++] = list3.get(i);
+        }
+        
+    }
+}
