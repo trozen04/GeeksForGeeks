@@ -1,0 +1,16 @@
+class Solution {
+    public String consecutiveVal(int n, List<Integer> a) {
+        StringBuilder sb = new StringBuilder();
+        Set<Integer> set = new HashSet<>(a);
+        for(int i = 0; i < a.size(); i++){
+            int min = a.get(i)-1;
+            int max = a.get(i) + 1;
+            if(set.contains(min) || set.contains(max)){
+                sb.append('1');
+            } else{
+                sb.append('0');
+            }
+        }
+        return sb.toString();
+    }
+}
