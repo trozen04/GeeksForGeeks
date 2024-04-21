@@ -1,0 +1,22 @@
+class Solution {
+    public static ArrayList<ArrayList<Integer>> findWays(int N, int r, int[] arr) {
+        ArrayList<ArrayList<Integer>> list = new ArrayList<>();
+        Arrays.sort(arr);
+        
+        combinations(arr, 0, new ArrayList(), N, r , list);
+        return list;
+    }
+    public static void combinations(int[] arr, int index, ArrayList<Integer> current, int N, int r, ArrayList<ArrayList<Integer>> list){
+        if(r == 0){
+            list.add(new ArrayList<>(current));
+            return;
+        }
+        
+        for(int i = index; i< N; i++){
+            if(i > index && arr[i] == arr[i-1]) continue;
+            current.add(arr[i]);
+            combinations(arr, i+1, current, N, r-1, list);
+            current.remove(current.size() - 1);
+        }
+    }
+}
