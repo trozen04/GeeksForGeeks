@@ -1,0 +1,16 @@
+class Solution {
+    public static int leadOptions(int N, int[] E) {
+        int max = 0; 
+        for(int i = 0; i < N; i++){
+            max = Math.max(max, E[i]);
+        }
+        int result = 0;
+        for(int i = 0; i < N; i++){
+            if(E[i] == max){
+                result++;
+            }
+        }
+        
+        return result;
+    }
+}
