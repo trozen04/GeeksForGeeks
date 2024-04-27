@@ -1,0 +1,73 @@
+class Solution
+{
+    //Function to sort the given doubly linked list using Merge Sort.
+    static Node sortDoubly(Node head)
+    {
+        if(head == null || head.next == null){
+            return head;
+        }
+        
+        Node first = head;
+        Node second = mid(head);
+        
+        first = sortDoubly(first);
+        second = sortDoubly(second);
+        
+        Node ans = merge(first, second);
+        return ans;
+    }
+    
+    static Node mid(Node head){
+        Node slow = head;
+        Node fast = head;
+        while(fast.next != null && fast.next.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        Node temp = slow.next;
+        slow.next = null;
+        temp.prev = null;
+        return temp;
+    }
+    
+    static Node merge(Node head1, Node head2){
+        if(head1==null) return head2;
+        if(head2==null) return head1;
+        
+        Node ans = new Node(-1);
+        Node temp = ans;
+        
+        while(head1!=null && head2!=null){
+            if(head1.data < head2.data){
+                temp.next = head1;
+                temp.next.prev = temp;
+                temp = temp.next;
+                head1 =head1.next;
+            }else{
+                temp.next = head2;
+                temp.next.prev = temp;
+                temp = temp.next;
+                head2 = head2.next;
+            }
+        }
+        
+        while(head1!=null){
+            temp.next = head1;
+            temp.next.prev = temp;
+            temp = temp.next;
+            head1= head1.next;
+        }
+        
+        while(head2!=null){
+            temp.next = head2;
+            temp.next.prev = temp;
+            temp = temp.next;
+            head2= head2.next;
+        }
+        
+        ans = ans.next;
+        ans.prev = null;
+        return ans;
+    }
+    
+}
