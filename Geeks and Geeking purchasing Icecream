@@ -1,0 +1,14 @@
+class Solution {
+    public long findGoodPairs(int[] a, int n, int k) {
+        
+        HashMap<Integer, Long> map = new HashMap<>();
+        long num = 0;
+        
+        for(int i = k; i < n; i++) {
+            map.put(a[i - k], map.getOrDefault(a[i - k], 0L) + 1);
+            num += map.getOrDefault(a[i], 0L);
+        }
+        
+        return num;
+    }
+} 
