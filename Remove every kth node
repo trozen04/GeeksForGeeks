@@ -1,0 +1,26 @@
+class Solution
+{
+    /*You are required to complete this method*/
+    Node delete(Node head, int k)
+    {
+        Node list = head;
+        Node temp = null;
+        int i = 0;
+        
+        while(list != null){
+            i++;
+            if(i == k){
+                if(temp == null){
+                    head = list.next;
+                } else{
+                    temp.next = list.next;
+                }
+                i = 0;
+            } else{
+                temp = list;
+            }
+            list = list.next;
+        }
+        return head;
+    }
+}
