@@ -1,0 +1,30 @@
+class Solution {
+    
+    public Node arrangeCV(Node head){
+        
+        StringBuilder vowel = new StringBuilder();
+        StringBuilder cons = new StringBuilder();
+        
+        Node temp = head;
+        while(temp != null){
+            char c = temp.data;
+            if( c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u'){
+                vowel.append(c);
+            } else{
+                cons.append(c);
+            }
+            temp = temp.next;
+        }
+        Node res = head;
+        for(int i = 0; i < vowel.length(); i++){
+            res.data = vowel.charAt(i);
+            res = res.next;
+        }
+        
+        for(int i = 0; i < cons.length(); i++){
+            res.data = cons.charAt(i);
+            res = res.next;
+        }
+        return head;
+    }
+}
