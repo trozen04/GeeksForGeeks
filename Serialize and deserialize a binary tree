@@ -1,0 +1,33 @@
+class Tree {
+    static int index;
+    public ArrayList<Integer> serialize(Node root) {
+        ArrayList<Integer> list = new ArrayList<>();
+        serialhelper(root, list);
+        return list;
+    }
+    public static void serialhelper(Node root, ArrayList<Integer> list){
+        if(root == null){
+            list.add(-1);
+            return;
+        }
+        list.add(root.data);
+        serialhelper(root.left, list);
+        serialhelper(root.right, list);
+        
+    }
+
+    // Function to deserialize a list and construct the tree.
+    public Node deSerialize(ArrayList<Integer> A) {
+        index = -1;
+        Node root = dehelper(A);
+        return root;
+    }
+    public static Node dehelper(ArrayList<Integer> list){
+        index++;
+        if(list.get(index) == -1) return null;
+        Node root = new Node(list.get(index));
+        root.left = dehelper(list);
+        root.right = dehelper(list);
+        return root;
+    }
+}
