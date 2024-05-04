@@ -1,0 +1,32 @@
+class GfG
+{
+    //Function to return a tree created from postorder and inoreder traversals.
+    Node buildTree(int in[], int post[], int n) {
+        int inFirst = 0;
+        int inLast = n-1;
+        int postFirst = 0;
+        int postLast = n-1;
+        return helper(in, post, inFirst, inLast, postFirst, postLast);
+    }
+    Node helper(int[] in, int[] post, int inFirst, int inLast, int postFirst, int postLast){
+        if(inFirst > inLast || postFirst > postLast){
+            return null;
+        }
+        Node root = new Node(post[postLast]);
+        
+        int index = 0;
+        for(int i = inFirst; i <= inLast; i++){
+            if(root.data == in[i]){
+                index = i;
+                break;
+            }
+        }
+        int left = index - inFirst;
+        int right = inLast - index;
+        
+        root.left = helper(in, post, inFirst, index-1, postFirst,postFirst + left - 1);
+        root.right = helper(in, post, index+1, inLast, postLast-right, postLast - 1);
+        return root;
+        
+    }
+}
