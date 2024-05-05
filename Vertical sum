@@ -1,0 +1,19 @@
+class Solution{
+    TreeMap<Integer, Integer> map = new TreeMap<>();
+    
+    public ArrayList <Integer> verticalSum(Node root) {
+        ArrayList<Integer> list = new ArrayList<>();
+        helper(root, 0);
+        for(int i : map.values()){
+            list.add(i);
+        }
+        return list;
+    }
+    public void helper(Node node, int level){
+        if(node == null) return;
+        
+        map.put(level, map.getOrDefault(level, 0) + node.data);
+        helper(node.left, level-1);
+        helper(node.right, level+1);
+    }
+}
