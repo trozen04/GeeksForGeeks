@@ -1,0 +1,26 @@
+class Tree
+{
+    ArrayList<Integer> arr = new ArrayList<>();
+    public ArrayList<Integer> reverseLevelOrder(Node root) 
+    {
+        Queue<Node> q = new LinkedList<>();
+        Stack<Node> s = new Stack<Node>();
+        q.add(root);
+        
+        while(!q.isEmpty()){
+            root = q.poll();
+            if(root.right != null) q.offer(root.right); 
+            if(root.left != null) q.offer(root.left);
+            
+            s.push(root);
+        }
+        
+        while(!s.isEmpty()){
+            int num = s.pop().data;
+            arr.add(num);
+        }
+        
+        return arr;
+    }
+    
+}      
