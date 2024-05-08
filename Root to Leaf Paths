@@ -1,0 +1,18 @@
+class Solution {
+    public static ArrayList<ArrayList<Integer>> Paths(Node root) {
+        ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+        helper(root, new ArrayList<>(), res);
+        return res;
+    }
+    public static void helper(Node root, ArrayList<Integer> list, ArrayList<ArrayList<Integer>> res){
+        if(root == null) return;
+        list.add(root.data);
+        if(root.left == null && root.right == null){
+            res.add(new ArrayList<>(list));
+            
+        }
+        helper(root.left, list, res);
+        helper(root.right, list, res);
+        list.remove(list.size() - 1);
+    }
+}
