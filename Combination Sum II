@@ -1,0 +1,23 @@
+class Solution {
+    public List<List<Integer>> CombinationSum2(int arr[], int n, int k) {
+      List<List<Integer>> ans = new ArrayList<>();
+      Arrays.sort(arr);
+      helper(0, arr, n, k, ans, new ArrayList<>());
+      return ans;
+    }
+    public void helper(int start, int[] arr, int n, int target, List<List<Integer>> ans, ArrayList<Integer> list){
+        if(target == 0){
+            ans.add(new ArrayList<>(list));
+        }
+        else if(target < 0){
+            return;
+        } else{
+            for(int i = start; i < n; i++){
+                if(i > start && arr[i] == arr[i-1]) continue;
+                list.add(arr[i]);
+                helper(i+1, arr, n, target-arr[i], ans, list);
+                list.remove(list.size() - 1);
+            }
+        }
+    }
+}
