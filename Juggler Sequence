@@ -1,0 +1,18 @@
+class Solution {
+    static List<Integer> jugglerSequence(int n) {
+        List<Integer> list = new ArrayList<>();
+        list.add(n);
+        long k = n;
+        while(k != 1){
+            if(k % 2 != 0){
+                k = (long)Math.pow(k, 3);
+                k = (long)Math.sqrt(k);
+            } else{
+                k = (long)Math.sqrt(k);
+            }
+            n = (int) k;
+            list.add(n);
+        }
+        return list;
+    }
+}
