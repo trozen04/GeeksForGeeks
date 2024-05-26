@@ -1,0 +1,17 @@
+
+class Solution {
+    public static int maximumStrongIndices(int n, int x, int y, int[] a, int[] b) {
+        int total = 0;
+        int i = 0, j = 0;
+        while(i < n && j < n){
+            if(a[i] - x > b[j]) j++;
+            else if(a[i] + y < b[j]) i++;
+            else{
+                total++;
+                i++;
+                j++;
+            }
+        }
+        return total;
+    }
+}
