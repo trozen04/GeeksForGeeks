@@ -1,0 +1,16 @@
+class Solution {
+    public static boolean geeklandElections(int n, int k, String s) {
+        int ones = 0;
+        int zero = 0;
+        for(int i = 0; i < n; i++){
+            if(s.charAt(i) - '0' == 1){
+                ones++;
+            } else{
+                zero++;
+            }
+        }
+        zero = zero - k;
+        if(ones + k > zero) return true;
+        return false;
+    }
+}
