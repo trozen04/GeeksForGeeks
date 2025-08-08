@@ -1,0 +1,23 @@
+class Solution {
+    int getLPSLength(String s) {
+        int n = s.length();
+        int prefixIndex = 0;   // index to track prefix characters
+        int suffixIndex = 1;   // index to track suffix characters
+        int matchedLength = 0; // length of current matched prefix and suffix
+        int startPos = 1;      // starting position of suffixIndex after mismatch
+
+        while (prefixIndex < n && suffixIndex < n) {
+            if (s.charAt(prefixIndex) == s.charAt(suffixIndex)) {
+                prefixIndex++;
+                suffixIndex++;
+                matchedLength++;
+            } else {
+                prefixIndex = 0;
+                matchedLength = 0;
+                startPos++;
+                suffixIndex = startPos;
+            }
+        }
+        return matchedLength;
+    }
+}
